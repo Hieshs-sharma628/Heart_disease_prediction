@@ -6,8 +6,21 @@ model = joblib.load("SVM_heart_model.pkl")
 scaler = joblib.load("scaler_heart.pkl")
 expected_columns = joblib.load("columns_heart.pkl")
 
-st.title("Heart stroke prediction ")
+st.title("Heart Disease Prediction ❤️")
 st.markdown("Provide the following details")
+st.markdown("""
+<style>
+.stApp { color: #FFFFFF; }
+h1, h2, h3, p, label { color: #FFFFFF !important; }
+input {
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+input::placeholder {
+    color: #CBD5E1 !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 age = st.slider("Age",18,100,40)
 sex = st.selectbox("SEX",['M','F'])
@@ -48,6 +61,7 @@ if st.button("Predict"):
     prediction = model.predict(scaled_input)[0]
 
     if prediction == 1:
-        st.error("High Risk of Heart Disease")
+        st.error("💀High Risk of Heart Disease")
     else:
-        st.succes("Low Risk of Heart Disease")
+        st.success("✅Low Risk of Heart Disease")
+        
